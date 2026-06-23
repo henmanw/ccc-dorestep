@@ -4668,13 +4668,15 @@ window.addEventListener('hashchange', render);
   function play(){
     if (busy || document.hidden) return;
     busy = true;
-    const v = first ? 'peek-right' : nextVariant();   /* TEMP TEST: force peek-right */
+    const v = first ? 'peek-right' : nextVariant();   /* first sighting is a peek, to show the face-on pose */
     first = false;
+    const isRun = v.indexOf('run') === 0;
+    el.innerHTML = '<div class="sq-inner">' + (isRun ? SVG_RUN : SVG_PEEK) + '</div>';
     el.className = ''; el.style.cssText = ''; void el.offsetWidth;
-    if (v.indexOf('run') === 0){
+    if (isRun){
       el.style.bottom = '14px';
     } else {
-      el.style.top = (13 + Math.random() * 58).toFixed(1) + '%';   /* random height, both sides */
+      el.style.top = (12 + Math.random() * 50).toFixed(1) + '%';   /* random height, both sides */
       el.style.bottom = 'auto';
     }
     el.className = CLASS[v];
