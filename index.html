@@ -3684,11 +3684,19 @@ function notFound(msg){
    ============================================================ */
 /* ---------- render dispatcher ---------- */
 let ROUTE = parseHash();
+/* Reflect the persisted mode on <html> so the token overrides (and therefore the
+   whole color ground) flip. Students mode carries no attribute. */
+function applyMode(){
+  if (getMode() === 'opportunities') document.documentElement.setAttribute('data-mode', 'opportunities');
+  else document.documentElement.removeAttribute('data-mode');
+}
+
 function render(){
   ROUTE = parseHash();
   renderNav(ROUTE);
   const view = document.getElementById('view');
   switch(ROUTE.page){
+    case 'opportunities': view.innerHTML = viewOpportunities(); bindOpportunities(); break;
     case 'people':   view.innerHTML = viewPeople();   bindPeople();   break;
     case 'projects': view.innerHTML = viewProjects(); bindProjects(); break;
     case 'calls':    view.innerHTML = viewCalls();    bindCalls();    break;
