@@ -4596,23 +4596,26 @@ window.addEventListener('hashchange', render);
   #dorestep-squirrel svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 7px rgba(0,0,0,.16))}
   #dorestep-squirrel .sq-inner{width:100%;height:100%}
   #dorestep-squirrel.face-left svg{transform:scaleX(-1)}
-  #dorestep-squirrel.run.ltr{animation:dsq-run-ltr 5.4s linear forwards}
-  #dorestep-squirrel.run.rtl{animation:dsq-run-rtl 5.4s linear forwards}
-  #dorestep-squirrel.run .sq-inner{animation:dsq-bob .46s ease-in-out infinite}
-  #dorestep-squirrel.run #dsq-tail{transform-box:fill-box;transform-origin:72% 88%;animation:dsq-tail .46s ease-in-out infinite}
-  #dorestep-squirrel.run #dsq-frontleg{transform-box:fill-box;transform-origin:50% 12%;animation:dsq-leg .23s ease-in-out infinite}
-  #dorestep-squirrel.peek{bottom:96px}
-  #dorestep-squirrel.peek.left{left:0;right:auto;animation:dsq-peek-left 5s ease-in-out forwards}
-  #dorestep-squirrel.peek.right{right:0;left:auto;animation:dsq-peek-right 5s ease-in-out forwards}
-  #dorestep-squirrel.peek .sq-inner{animation:dsq-look 1.4s ease-in-out infinite}
+  #dorestep-squirrel.run.ltr{animation:dsq-run-ltr 6.6s linear forwards}
+  #dorestep-squirrel.run.rtl{animation:dsq-run-rtl 6.6s linear forwards}
+  #dorestep-squirrel.run .sq-inner{animation:dsq-gallop .4s ease-in-out infinite;transform-origin:50% 90%}
+  #dorestep-squirrel.run #dsq-tail{transform-box:fill-box;transform-origin:72% 90%;animation:dsq-tail .4s ease-in-out infinite}
+  #dorestep-squirrel.run #dsq-frontleg{transform-box:fill-box;transform-origin:50% 8%;animation:dsq-leg-f .4s ease-in-out infinite}
+  #dorestep-squirrel.run #dsq-backleg{transform-box:fill-box;transform-origin:60% 8%;animation:dsq-leg-b .4s ease-in-out infinite}
+  #dorestep-squirrel.peek.left{left:0;right:auto;animation:dsq-peek-left 4.6s ease-in-out forwards}
+  #dorestep-squirrel.peek.right{right:0;left:auto;animation:dsq-peek-right 4.6s ease-in-out forwards}
+  #dorestep-squirrel.peek .sq-inner{animation:dsq-peeklook 2s ease-in-out infinite;transform-origin:80% 50%}
   @keyframes dsq-run-ltr{from{transform:translateX(-190px)}to{transform:translateX(calc(100vw + 190px))}}
   @keyframes dsq-run-rtl{from{transform:translateX(calc(100vw + 190px))}to{transform:translateX(-190px)}}
-  @keyframes dsq-peek-left{0%{transform:translateX(-105%)}16%{transform:translateX(8%)}26%{transform:translateX(-2%)}72%{transform:translateX(-2%)}100%{transform:translateX(-105%)}}
-  @keyframes dsq-peek-right{0%{transform:translateX(105%)}16%{transform:translateX(-8%)}26%{transform:translateX(2%)}72%{transform:translateX(2%)}100%{transform:translateX(105%)}}
-  @keyframes dsq-bob{0%,100%{transform:translateY(0)}25%{transform:translateY(-9px)}50%{transform:translateY(-1px)}75%{transform:translateY(-6px)}}
-  @keyframes dsq-tail{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(6deg)}}
-  @keyframes dsq-leg{0%,100%{transform:rotate(6deg)}50%{transform:rotate(-16deg)}}
-  @keyframes dsq-look{0%,100%{transform:rotate(0)}50%{transform:rotate(-5deg) translateY(-3px)}}`;
+  /* peek: cling to the screen edge, only the head/front pokes around it, with a shy double-take */
+  @keyframes dsq-peek-left{0%{transform:translateX(-100%)}15%{transform:translateX(-56%)}27%{transform:translateX(-66%)}42%{transform:translateX(-50%)}74%{transform:translateX(-53%)}100%{transform:translateX(-100%)}}
+  @keyframes dsq-peek-right{0%{transform:translateX(100%)}15%{transform:translateX(56%)}27%{transform:translateX(66%)}42%{transform:translateX(50%)}74%{transform:translateX(53%)}100%{transform:translateX(100%)}}
+  /* bounding gallop: leap up + stretch, land + squash, lean into the run */
+  @keyframes dsq-gallop{0%{transform:translateY(0) rotate(-3deg) scaleY(1)}22%{transform:translateY(-16px) rotate(-7deg) scaleY(1.05)}46%{transform:translateY(-2px) rotate(0deg) scaleY(1)}62%{transform:translateY(3px) rotate(4deg) scaleY(.94)}100%{transform:translateY(0) rotate(-3deg) scaleY(1)}}
+  @keyframes dsq-tail{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(11deg)}}
+  @keyframes dsq-leg-f{0%,100%{transform:rotate(20deg)}50%{transform:rotate(-22deg)}}
+  @keyframes dsq-leg-b{0%,100%{transform:rotate(-20deg)}50%{transform:rotate(22deg)}}
+  @keyframes dsq-peeklook{0%,100%{transform:rotate(0) translateY(0)}35%{transform:rotate(-5deg) translateY(-3px)}65%{transform:rotate(4deg) translateY(2px)}}`;
   const style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
   const el = document.createElement('div'); el.id = 'dorestep-squirrel'; el.setAttribute('aria-hidden', 'true');
   el.innerHTML = '<div class="sq-inner">' + SVG + '</div>';
