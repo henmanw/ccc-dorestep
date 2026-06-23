@@ -5068,6 +5068,11 @@ window.addEventListener('hashchange', render);
     }
   });
   initPulse();
+  /* Apply the persisted mode before first paint so the ground does not flash. */
+  applyMode();
+  if (getMode() === 'opportunities' && parseHash().page === 'discover'){
+    history.replaceState(null, '', '#/opportunities');
+  }
   render();
   if ('onboard' in q) openWizard();
   if ('post' in q) openProjectModal();
