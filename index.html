@@ -3275,6 +3275,88 @@ function bindProjects(){
   });
 }
 
+/* ---------- opportunities (connect with Vanderbilt) ---------- */
+const OPP_CAL_ICON   = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="17" rx="2"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>';
+const OPP_PIN_ICON   = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>';
+const OPP_CLOCK_ICON = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5l3 2"/></svg>';
+
+function opportunityCard(opp, match){
+  const isEvent = opp.kind === 'event';
+  /* Same accent logic as personCard/projectCard: lead with the match reason if
+     scored, otherwise show the tag chips. */
+  const accent = match && match.reasons.length
+    ? '<div class="pc-reasons">' + whyMatch(match) + '</div>'
+    : '<div class="pc-tags">' + (opp.tags || []).slice(0, 3).map(t => '<span class="tag">' + esc(ANY_LABEL[t] || t) + '</span>').join('') + '</div>';
+  const actions = isEvent
+    ? '<a class="btn btn-ghost btn-sm" href="' + gcalEventLink(opp) + '" target="_blank" rel="noopener">Add to calendar</a>'
+      + '<button class="btn btn-ghost btn-sm" data-action="opp-ics" data-id="' + opp.id + '">Download .ics</button>'
+    : '<button class="btn btn-gold btn-sm" data-action="opp-join" data-id="' + opp.id + '">I&rsquo;m interested</button>';
+  return '<article class="pcard opp-card">'
+    + '<div class="pc-top"><div class="pc-id">'
+    + '<div class="prj-title">' + esc(opp.title) + '</div>'
+    + '<div class="kind-bar" style="margin-top:8px">'
+      + '<span class="kind-chip">' + (isEvent ? 'Event' : 'Organization') + '</span>'
+      + schoolChip(opp.school) + '</div>'
+    + '<div class="pc-head" style="margin-top:6px">' + esc(opp.org) + '</div>'
+    + '</div>' + (match ? scoreRing(match.score) : '') + '</div>'
+    + '<div class="prj-desc">' + esc(opp.desc) + '</div>'
+    + accent
+    + '<div class="opp-meta">'
+      + '<span class="om-i">' + OPP_CAL_ICON + esc(opp.when) + '</span>'
+      + '<span class="om-i">' + OPP_PIN_ICON + esc(opp.location) + '</span>'
+      + '<span class="om-i">' + OPP_CLOCK_ICON + esc(opp.commit) + '</span>'
+    + '</div>'
+    + '<div class="pc-actions" style="margin-top:auto;padding-top:10px;border-top:1px solid var(--hairline)">' + actions + '</div>'
+    + '</article>';
+}
+
+function opportunityResults(){
+  const f = FILTERS.opps, me = getProfile();
+  let list = SEED_OPPORTUNITIES.slice();
+  if (f.kind === 'events') list = list.filter(o => o.kind === 'event');
+  else if (f.kind === 'orgs') list = list.filter(o => o.kind === 'org');
+  /* Same profile, same engine as the project board. */
+  let scored = list.map(o => ({ o, m: me ? scoreOpportunity(me, o) : null }));
+  if (me) scored.sort((a, b) => ((b.m ? b.m.score : 0) - (a.m ? a.m.score : 0)) || a.o.title.localeCompare(b.o.title));
+  if (!scored.length){
+    return '<div class="empty"><div class="e-title">Nothing here yet</div><div class="e-sub">Try the other filter.</div></div>';
+  }
+  const cards = '<div class="card-grid">'
+    + scored.map(x => opportunityCard(x.o, x.m && x.m.score > 0 ? x.m : null)).join('') + '</div>';
+  return '<div class="result-count">' + scored.length + ' opportunit' + (scored.length === 1 ? 'y' : 'ies')
+    + (me ? ', sorted by fit with your profile' : ', create a profile to sort by fit') + '</div>' + cards;
+}
+
+function viewOpportunities(){
+  const f = FILTERS.opps, me = getProfile();
+  let html = '<div class="page shell"><div class="page-head">'
+    + '<div class="page-title">Opportunities at Vanderbilt</div>'
+    + '<div class="page-sub">Events and student organizations from across every school, ranked for you by the same engine that matches collaborators. The thing you are looking for is rarely in your own department.</div>'
+    + '<div class="opp-note">Opportunity data here is illustrative. In production it would sync live from AnchorLink, Vanderbilt&rsquo;s student involvement platform.</div>'
+    + '</div>';
+  if (!me){
+    html += '<div class="profile-banner"><div class="pb-txt">'
+      + '<div class="pb-t">See opportunities matched to you</div>'
+      + '<div class="pb-s">Tell Dorestep what you are building and what you care about; this feed reorders itself around your fit.</div></div>'
+      + '<button class="btn btn-gold btn-sm" data-action="open-wizard">Create profile</button></div>';
+  }
+  html += '<div class="kind-bar" style="margin-top:18px">'
+    + [['all','All'],['events','Events'],['orgs','Organizations']].map(([id, label]) =>
+        '<button class="ftoggle opp-pick' + (f.kind === id ? ' on' : '') + '" data-kind="' + id + '">' + label + '</button>').join('')
+    + '</div><div id="opp-results">' + opportunityResults() + '</div></div>';
+  return html;
+}
+function bindOpportunities(){
+  const out = document.getElementById('opp-results');
+  document.querySelectorAll('.opp-pick').forEach(btn => {
+    btn.addEventListener('click', () => {
+      FILTERS.opps.kind = btn.dataset.kind;
+      document.querySelectorAll('.opp-pick').forEach(b => b.classList.toggle('on', b.dataset.kind === FILTERS.opps.kind));
+      out.innerHTML = opportunityResults();
+    });
+  });
+}
+
 /* ---------- student detail ---------- */
 function tagList(ids, labelMap, cls){
   return ids && ids.length
