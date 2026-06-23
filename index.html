@@ -4205,6 +4205,37 @@ function icsFor(slot, withName){
     'END:VEVENT','END:VCALENDAR'].join('\r\n');
 }
 
+/* Event calendar export. icsFor/gcalLink above take an availability SLOT and a
+   name; opportunities carry an explicit date and title, so these adapters build
+   the same Google-render URL and the same VCALENDAR string from an event record. */
+function icsStamp(dateStr, timeStr){
+  return String(dateStr).replace(/-/g, '') + 'T' + String(timeStr || '09:00').replace(':', '') + '00';
+}
+function icsEsc(s){ return String(s == null ? '' : s).replace(/([\\,;])/g, '\\$1').replace(/\n/g, '\\n'); }
+function eventRange(opp){
+  return { start: icsStamp(opp.date, opp.time), end: icsStamp(opp.endDate || opp.date, opp.endTime || opp.time) };
+}
+function gcalEventLink(opp){
+  const { start, end } = eventRange(opp);
+  const p = new URLSearchParams({
+    action:'TEMPLATE',
+    text: opp.title,
+    dates: start + '/' + end,
+    details: (opp.org ? opp.org + '. ' : '') + 'Saved from Dorestep, the Vanderbilt opportunities feed (demo).',
+    location: opp.location || '',
+  });
+  return 'https://calendar.google.com/calendar/render?' + p.toString();
+}
+function icsForEvent(opp){
+  const { start, end } = eventRange(opp);
+  return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Dorestep//EN','BEGIN:VEVENT',
+    'SUMMARY:' + icsEsc(opp.title),
+    'DTSTART:' + start, 'DTEND:' + end,
+    'LOCATION:' + icsEsc(opp.location),
+    'DESCRIPTION:' + icsEsc((opp.org ? opp.org + '. ' : '') + 'Saved from Dorestep at Vanderbilt (demo).'),
+    'END:VEVENT','END:VCALENDAR'].join('\r\n');
+}
+
 function scheduleMeetingReply(threadId){
   setTimeout(() => {
     const threads = getThreads();
