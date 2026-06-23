@@ -4786,6 +4786,31 @@ ACTIONS['ics'] = (el) => {
     toast('<span class="t-gold">&#10003;</span> Calendar invite downloaded.');
   }catch(err){ toast('Calendar export is ready in the real app.'); }
 };
+ACTIONS['set-mode'] = (el) => {
+  const m = el.dataset.mode === 'opportunities' ? 'opportunities' : 'students';
+  setMode(m);
+  applyMode();
+  /* Land on each mode's home; the hash change re-renders the nav + view. */
+  location.hash = m === 'opportunities' ? '#/opportunities' : '#/discover';
+};
+ACTIONS['opp-join'] = (el) => {
+  const o = SEED_OPPORTUNITIES.find(x => x.id === el.dataset.id);
+  toast('<span class="t-gold">&#9733;</span> Noted your interest' + (o ? ' in ' + esc(o.title) : '')
+    + '. In the live app this would follow the group on AnchorLink.');
+};
+ACTIONS['opp-ics'] = (el) => {
+  const o = SEED_OPPORTUNITIES.find(x => x.id === el.dataset.id);
+  if (!o) return;
+  try{
+    const blob = new Blob([icsForEvent(o)], { type:'text/calendar' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = 'dorestep-' + o.id + '.ics';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast('<span class="t-gold">&#10003;</span> Event saved to your calendar file.');
+  }catch(err){ toast('Calendar export is ready in the real app.'); }
+};
 ACTIONS['report'] = (el) => {
   const s = studentById(el.dataset.id);
   toast('Report received. The team would review ' + esc(s ? s.name : 'this profile') + ' within 24 hours.');
