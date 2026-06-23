@@ -2245,6 +2245,10 @@ const getFeedback = () => store.get('feedback', {});
 const setFeedback = f  => store.set('feedback', f);
 const getBlocked  = () => store.get('blocked', []);
 const setBlocked  = b  => store.set('blocked', b);
+/* Active experience mode: 'students' (default) or 'opportunities'. Persisted under
+   NS, so store.clearAll() / "Reset demo" returns the site to students mode. */
+const getMode = () => store.get('mode', 'students');
+const setMode = m  => store.set('mode', m === 'opportunities' ? 'opportunities' : 'students');
 /* Learned per-kind nudge from thumbs: liking school-crossing matches lifts
    future school reasons, and vice versa. Small, bounded, explainable. */
 function kindWeights(){
