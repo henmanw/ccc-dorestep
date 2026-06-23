@@ -4653,7 +4653,7 @@ window.addEventListener('hashchange', render);
   @keyframes dsq-peeklook{0%,100%{transform:rotate(0) translateY(0)}35%{transform:rotate(-5deg) translateY(-3px)}65%{transform:rotate(4deg) translateY(2px)}}`;
   const style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
   const el = document.createElement('div'); el.id = 'dorestep-squirrel'; el.setAttribute('aria-hidden', 'true');
-  el.innerHTML = '<div class="sq-inner">' + SVG + '</div>';
+  el.innerHTML = '';
   document.body.appendChild(el);
   const CLASS = { 'run-ltr':'run ltr', 'run-rtl':'run rtl face-left', 'peek-left':'peek left', 'peek-right':'peek right face-left' };
   let busy = false, first = true, bag = [];
