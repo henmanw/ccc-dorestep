@@ -4620,18 +4620,34 @@ window.addEventListener('hashchange', render);
   const el = document.createElement('div'); el.id = 'dorestep-squirrel'; el.setAttribute('aria-hidden', 'true');
   el.innerHTML = '<div class="sq-inner">' + SVG + '</div>';
   document.body.appendChild(el);
-  let busy = false;
+  const CLASS = { 'run-ltr':'run ltr', 'run-rtl':'run rtl face-left', 'peek-left':'peek left', 'peek-right':'peek right face-left' };
+  let busy = false, first = true, bag = [];
+  function nextVariant(){
+    /* shuffled bag so every variant (incl. both runs) shows once per cycle, no starvation */
+    if (!bag.length){
+      bag = ['run-ltr', 'run-rtl', 'peek-left', 'peek-right'];
+      for (let i = bag.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [bag[i], bag[j]] = [bag[j], bag[i]]; }
+    }
+    return bag.pop();
+  }
   function play(){
     if (busy || document.hidden) return;
     busy = true;
-    const v = ['run-ltr', 'run-rtl', 'peek-left', 'peek-right'][Math.floor(Math.random() * 4)];
-    el.className = ''; void el.offsetWidth;
-    el.className = { 'run-ltr':'run ltr', 'run-rtl':'run rtl face-left', 'peek-left':'peek left', 'peek-right':'peek right face-left' }[v];
+    const v = first ? 'run-ltr' : nextVariant();   /* first sighting is a run, to show the gait */
+    first = false;
+    el.className = ''; el.style.cssText = ''; void el.offsetWidth;
+    if (v.indexOf('run') === 0){
+      el.style.bottom = '14px';
+    } else {
+      el.style.top = (13 + Math.random() * 58).toFixed(1) + '%';   /* random height, both sides */
+      el.style.bottom = 'auto';
+    }
+    el.className = CLASS[v];
     el.style.display = 'block';
     const done = (e) => { if (e.target !== el) return; el.removeEventListener('animationend', done); el.style.display = 'none'; el.className = ''; busy = false; };
     el.addEventListener('animationend', done);
   }
-  setTimeout(play, 7000);
+  setTimeout(play, 6000);
   setInterval(play, 45000);
 })();
 
