@@ -3141,6 +3141,7 @@ function viewProject(id){
   const owner = studentById(prj.owner);
 
   let main = '<a class="back-link" href="javascript:history.back()">&larr; Back</a>'
+    + '<div class="detail-cover">' + projectCover(prj) + '</div>'
     + '<div class="detail-head"><div class="dh-id">'
     + '<div class="detail-name">' + esc(prj.title) + '</div>'
     + '<div style="margin-top:10px;display:flex;gap:9px;align-items:center;flex-wrap:wrap">' + schoolChip(prj.school) + kindChip(prj.kind) + immChip(prj)
