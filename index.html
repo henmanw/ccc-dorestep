@@ -2432,12 +2432,25 @@ const NAV_TABS = [
 ];
 
 function renderNav(route){
-  const unread = getConnections().filter(c => c.status === 'pending').length;
-  document.getElementById('nav-tabs').innerHTML = NAV_TABS.map(([id, label]) => {
-    const badge = (id === 'inbox' && getConnections().length)
-      ? '<span class="tab-badge">' + getConnections().length + '</span>' : '';
-    return '<a class="nav-tab' + (route.page === id ? ' active' : '') + '" href="#/' + id + '"' + (route.page === id ? ' aria-current="page"' : '') + '>' + label + badge + '</a>';
-  }).join('');
+  const mode = getMode();
+  /* Keep the always-visible mode toggle in sync (aria + active state). */
+  document.querySelectorAll('.mode-opt').forEach(b => {
+    const on = b.dataset.mode === mode;
+    b.classList.toggle('on', on);
+    b.setAttribute('aria-pressed', on ? 'true' : 'false');
+  });
+  /* Opportunities mode swaps the student-directory tabs for the single feed;
+     students mode keeps NAV_TABS exactly as before. */
+  if (mode === 'opportunities'){
+    document.getElementById('nav-tabs').innerHTML =
+      '<a class="nav-tab active" href="#/opportunities" aria-current="page">For You</a>';
+  } else {
+    document.getElementById('nav-tabs').innerHTML = NAV_TABS.map(([id, label]) => {
+      const badge = (id === 'inbox' && getConnections().length)
+        ? '<span class="tab-badge">' + getConnections().length + '</span>' : '';
+      return '<a class="nav-tab' + (route.page === id ? ' active' : '') + '" href="#/' + id + '"' + (route.page === id ? ' aria-current="page"' : '') + '>' + label + badge + '</a>';
+    }).join('');
+  }
   const slot = document.getElementById('nav-id-slot');
   const p = getProfile();
   slot.innerHTML = p
