@@ -3163,6 +3163,12 @@ function viewProject(id){
     + '</div>'
     + '<div class="block-label">Tags</div>' + tagList(prj.tags, ANY_LABEL);
 
+  const sims = relatedProjects(prj, 3);
+  if (sims.length){
+    main += '<div class="block-label">Similar projects</div><div class="similar-grid">'
+      + sims.map(simCard).join('') + '</div>';
+  }
+
   let aside = '';
   if (owner && owner.id === 's-me'){
     const track = '<div class="status-track">' + STATUS_FLOW.map(s => {
