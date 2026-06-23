@@ -4565,7 +4565,7 @@ window.addEventListener('hashchange', render);
    peeks in from a side every 45s. Pointer-events off, respects reduced-motion. */
 (function squirrel(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const SVG = `<svg viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg">
+  const SVG_RUN = `<svg viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="dsqBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9743F"/><stop offset="1" stop-color="#6E4423"/></linearGradient>
       <linearGradient id="dsqTail" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#BC8A52"/><stop offset="1" stop-color="#5E3A1E"/></linearGradient>
