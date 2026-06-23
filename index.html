@@ -1001,6 +1001,69 @@ a.ccc-lockup:hover .cl-name{color:#946E24}
 .skip-link:focus{left:12px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
 
+/* ============================================================
+   OPPORTUNITIES MODE: full color-ground inversion via tokens.
+   Only the existing ink/paper + gold palette are rotated; no new hues.
+   Gold *text* resolves to the AA-safe flat gold (--gold -> #CFAE70);
+   solid gold fills that carry white text keep the deep gold (--gold-deep).
+   ============================================================ */
+html[data-mode="opportunities"]{
+  --paper:#141414;                      /* ground flips to near-black */
+  --ink:#F4F1EA;                        /* text flips to near-white cream */
+  --card:#1F1F1F;                       /* dark elevated surface */
+  --ink-soft:rgba(244,241,234,.74);
+  --ink-faint:rgba(244,241,234,.55);
+  --hairline:rgba(244,241,234,.12);
+  --hairline-strong:rgba(244,241,234,.22);
+  --gold:#CFAE70;                        /* gold-as-text -> flat gold (AA on black) */
+  --gold-tint:rgba(207,174,112,.16);
+  --amber-tint:rgba(236,183,72,.20);
+  --sky-tint:rgba(179,201,205,.16);
+  --shadow:0 1px 2px rgba(0,0,0,.5),0 6px 18px rgba(0,0,0,.55);
+  --shadow-lift:0 2px 4px rgba(0,0,0,.55),0 16px 36px rgba(0,0,0,.6);
+}
+/* Solid gold fills under white text: keep deep gold so white stays legible. */
+html[data-mode="opportunities"] .btn-gold,
+html[data-mode="opportunities"] .av-me,
+html[data-mode="opportunities"] .msg.from-me,
+html[data-mode="opportunities"] .skip-link{ background:var(--gold-deep); }
+/* Components that used near-black ink as a fill need a dark-mode treatment. */
+html[data-mode="opportunities"] .ftoggle.on,
+html[data-mode="opportunities"] .pick.on{ background:var(--gold);border-color:var(--gold);color:var(--nav-bg); }
+html[data-mode="opportunities"] .toast{ background:var(--nav-bg);color:var(--ink);border:1px solid var(--hairline-strong); }
+html[data-mode="opportunities"] .comm-pick.on .cp-check{ color:var(--nav-bg); }
+
+/* Mode crossfade (auto-disabled by the prefers-reduced-motion rule below). */
+body{ transition:background-color .35s ease,color .35s ease; }
+
+/* ---------- mode toggle (constant in both modes; lives in the always-dark nav) ---------- */
+.mode-switch{
+  display:inline-flex;flex:none;align-items:center;gap:2px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(207,174,112,.30);
+  border-radius:var(--radius-pill);padding:3px;
+}
+.mode-opt{
+  font-family:var(--font-display);text-transform:uppercase;letter-spacing:.08em;
+  font-size:12px;color:rgba(255,255,255,.62);
+  padding:5px 13px;border-radius:var(--radius-pill);white-space:nowrap;
+  transition:color .15s,background .15s;
+}
+.mode-opt:hover{color:#fff}
+.mode-opt.on{background:var(--gold);color:var(--nav-bg);font-weight:600}
+.mode-opt:focus-visible{outline:2.5px solid var(--amber);outline-offset:2px}
+
+/* ---------- opportunities feed (reuses card / tag / pill / score components) ---------- */
+.opp-meta{
+  display:flex;flex-wrap:wrap;gap:7px 14px;align-items:center;
+  font-size:12.5px;color:var(--ink-faint);
+}
+.opp-meta .om-i{display:inline-flex;align-items:center;gap:5px}
+.opp-meta .om-i svg{flex:none;opacity:.85}
+.opp-note{
+  font-family:var(--font-serif);font-style:italic;font-size:12.5px;
+  color:var(--ink-faint);margin-top:8px;max-width:640px;
+}
+
 /* ---------- responsive ---------- */
 @media (max-width:880px){
   .thread-back{display:inline-flex}
