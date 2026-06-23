@@ -2572,6 +2572,7 @@ function projectCard(prj, match){
     return m ? avatarHtml(m, 'av-xs') : '';
   }).join('');
   return '<article class="pcard prj-card">'
+    + '<div class="pc-cover">' + projectCover(prj) + '</div>'
     + '<div class="pc-top"><div class="pc-id">'
     + '<div class="prj-title"><a href="#/project/' + prj.id + '">' + esc(prj.title) + '</a></div>'
     + '<div style="margin-top:7px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">' + schoolChip(prj.school)
