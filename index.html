@@ -5068,6 +5068,9 @@ window.addEventListener('hashchange', render);
     }
   });
   initPulse();
+  /* ?mode=opportunities (or students): demo hook to deep-link a mode, mirroring
+     ?seedme/?flow/?onboard. The toggle persists it the same way thereafter. */
+  if ('mode' in q) setMode(q.mode);
   /* Apply the persisted mode before first paint so the ground does not flash. */
   applyMode();
   if (getMode() === 'opportunities' && parseHash().page === 'discover'){
