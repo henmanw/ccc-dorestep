@@ -4633,7 +4633,7 @@ window.addEventListener('hashchange', render);
   function play(){
     if (busy || document.hidden) return;
     busy = true;
-    const v = first ? 'run-ltr' : nextVariant();   /* first sighting is a run, to show the gait */
+    const v = first ? 'peek-right' : nextVariant();   /* TEMP TEST: force peek-right */
     first = false;
     el.className = ''; el.style.cssText = ''; void el.offsetWidth;
     if (v.indexOf('run') === 0){
