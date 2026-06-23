@@ -4591,6 +4591,40 @@ window.addEventListener('hashchange', render);
     <path d="M111,69 q5,-4 10,0 q-5,3 -10,0 Z" fill="#B49248"/>
     <line x1="116" y1="67" x2="116" y2="64" stroke="#7A5230" stroke-width="1.4"/>
   </svg>`;
+  /* Front-facing peeker: grips the screen edge with both paws and looks right at the user. */
+  const SVG_PEEK = `<svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="pkBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#AC773F"/><stop offset="1" stop-color="#6E4423"/></linearGradient>
+      <radialGradient id="pkBelly" cx="0.5" cy="0.4" r="0.75"><stop offset="0" stop-color="#F2DFBC"/><stop offset="1" stop-color="#DCBD8E"/></radialGradient>
+      <linearGradient id="pkTail" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#C08D54"/><stop offset="1" stop-color="#5E3A1E"/></linearGradient>
+    </defs>
+    <path d="M78,84 C120,80 126,34 98,18 C82,9 64,18 72,32 C80,23 98,28 98,44 C98,60 78,66 76,82 Z" fill="url(#pkTail)" stroke="#5E3A1E" stroke-width="1" stroke-opacity="0.35"/>
+    <ellipse cx="40" cy="118" rx="30" ry="24" fill="url(#pkBody)"/>
+    <ellipse cx="46" cy="122" rx="18" ry="16" fill="url(#pkBelly)" opacity="0.92"/>
+    <circle cx="54" cy="56" r="33" fill="url(#pkBody)"/>
+    <ellipse cx="33" cy="26" rx="9" ry="13" fill="#6E4423" transform="rotate(-22 33 26)"/>
+    <ellipse cx="34" cy="28" rx="4.4" ry="7" fill="#C98A5E" transform="rotate(-22 34 28)"/>
+    <ellipse cx="77" cy="24" rx="9" ry="13" fill="#6E4423" transform="rotate(20 77 24)"/>
+    <ellipse cx="76" cy="26" rx="4.4" ry="7" fill="#C98A5E" transform="rotate(20 76 26)"/>
+    <ellipse cx="54" cy="66" rx="20" ry="16" fill="url(#pkBelly)"/>
+    <ellipse cx="34" cy="62" rx="11" ry="10" fill="url(#pkBelly)" opacity="0.85"/>
+    <ellipse cx="74" cy="62" rx="11" ry="10" fill="url(#pkBelly)" opacity="0.85"/>
+    <circle cx="42" cy="50" r="7.5" fill="#fff"/><circle cx="43" cy="51" r="5.4" fill="#241710"/><circle cx="44.6" cy="49" r="1.7" fill="#fff"/>
+    <circle cx="68" cy="50" r="7.5" fill="#fff"/><circle cx="69" cy="51" r="5.4" fill="#241710"/><circle cx="70.6" cy="49" r="1.7" fill="#fff"/>
+    <ellipse cx="55" cy="64" rx="3.6" ry="2.8" fill="#3A241A"/>
+    <path d="M55,67 q-5,6 -10,2 M55,67 q5,6 10,2" fill="none" stroke="#5E3A1E" stroke-width="1.4" stroke-linecap="round"/>
+    <rect x="51.5" y="68" width="3" height="5" rx="1" fill="#fff" stroke="#d8c4a0" stroke-width="0.4"/>
+    <rect x="55" y="68" width="3" height="5" rx="1" fill="#fff" stroke="#d8c4a0" stroke-width="0.4"/>
+    <g stroke="#9b7a55" stroke-width="0.7" stroke-opacity="0.5"><line x1="40" y1="64" x2="18" y2="60"/><line x1="40" y1="67" x2="17" y2="70"/><line x1="70" y1="64" x2="92" y2="60"/><line x1="70" y1="67" x2="93" y2="70"/></g>
+    <path d="M40,92 Q22,84 12,82" fill="none" stroke="url(#pkBody)" stroke-width="11" stroke-linecap="round"/>
+    <path d="M44,112 Q26,108 13,104" fill="none" stroke="url(#pkBody)" stroke-width="11" stroke-linecap="round"/>
+    <g>
+      <ellipse cx="13" cy="80" rx="7.5" ry="6.5" fill="url(#pkBody)"/>
+      <ellipse cx="6" cy="74" rx="2.3" ry="4" fill="#7A5230" transform="rotate(24 6 74)"/><ellipse cx="4" cy="80" rx="2.3" ry="4" fill="#7A5230"/><ellipse cx="6" cy="86" rx="2.3" ry="4" fill="#7A5230" transform="rotate(-24 6 86)"/>
+      <ellipse cx="13" cy="104" rx="7.5" ry="6.5" fill="url(#pkBody)"/>
+      <ellipse cx="6" cy="98" rx="2.3" ry="4" fill="#7A5230" transform="rotate(24 6 98)"/><ellipse cx="4" cy="104" rx="2.3" ry="4" fill="#7A5230"/><ellipse cx="6" cy="110" rx="2.3" ry="4" fill="#7A5230" transform="rotate(-24 6 110)"/>
+    </g>
+  </svg>`;
   const css = `
   #dorestep-squirrel{position:fixed;left:0;bottom:14px;width:152px;height:110px;z-index:45;pointer-events:none;display:none;will-change:transform}
   #dorestep-squirrel svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 7px rgba(0,0,0,.16))}
