@@ -2388,6 +2388,22 @@ function scoreProject(me, prj){
   return { score: Math.min(99, score), reasons };
 }
 
+/* Opportunities reuse the SAME engine as projects. An opportunity is scored as a
+   lightweight project: its relevant skills become one open role, its interest tags
+   stay as tags, and its hosting school drives the cross-school bonus. So the score,
+   the skill/interest/school reasons, and the reason pills all come straight out of
+   scoreProject. No second matcher. */
+function scoreOpportunity(me, opp){
+  const asProject = {
+    school: opp.school,
+    tags: opp.tags || [],
+    rolesNeeded: (opp.skills && opp.skills.length)
+      ? [{ role: opp.focus || (opp.kind === 'event' ? 'participant' : 'member'), skills: opp.skills, filled:false }]
+      : [],
+  };
+  return scoreProject(me, asProject);
+}
+
 /* Default lens when the visitor has no profile yet: a neutral browser persona
    so Discover still shows cross-school pairings instead of an empty page. */
 function matchLens(){
