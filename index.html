@@ -4668,7 +4668,7 @@ window.addEventListener('hashchange', render);
   function play(){
     if (busy || document.hidden) return;
     busy = true;
-    const v = first ? 'peek-right' : nextVariant();   /* first sighting is a peek, to show the face-on pose */
+    const v = first ? (Math.random() < 0.5 ? 'peek-left' : 'peek-right') : nextVariant();   /* first sighting is a peek, to show the face-on pose */
     first = false;
     const isRun = v.indexOf('run') === 0;
     el.innerHTML = '<div class="sq-inner">' + (isRun ? SVG_RUN : SVG_PEEK) + '</div>';
