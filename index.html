@@ -4558,6 +4558,14 @@ document.getElementById('reset-demo').addEventListener('click', e => {
 });
 window.addEventListener('hashchange', render);
 
+/* Condense the top nav once the page scrolls (real-site depth cue). */
+(function stickyNav(){
+  const nav = document.getElementById('topnav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 16);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
 (function init(){
   const q = parseHash().query;
   /* ?seedme: write a sample visitor profile so matched states can be
