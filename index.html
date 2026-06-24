@@ -4929,7 +4929,7 @@ window.addEventListener('hashchange', render);
   /* (the side "peek" pose was removed June 2026 — the squirrel only runs along the
      bottom or climbs the side edges now, both using the SVG_RUN sprite) */
   const css = `
-  #dorestep-squirrel{position:fixed;left:0;bottom:-5px;width:152px;height:110px;z-index:45;pointer-events:none;display:none;will-change:transform}
+  #dorestep-squirrel{position:fixed;left:0;bottom:-5px;width:152px;height:110px;z-index:45;pointer-events:auto;display:none;will-change:transform}
   #dorestep-squirrel svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 7px rgba(0,0,0,.16))}
   #dorestep-squirrel .sq-inner{width:100%;height:100%}
   #dorestep-squirrel.face-left svg{transform:scaleX(-1)}
