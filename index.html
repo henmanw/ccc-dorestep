@@ -4897,7 +4897,7 @@ window.addEventListener('hashchange', render);
 })();
 
 /* Fun perk: a little gradient-shaded squirrel scurries across the bottom or
-   peeks in from a side every 45s. Pointer-events off, respects reduced-motion. */
+   climbs up/down a side edge like a tree trunk every 45s. Pointer-events off, respects reduced-motion. */
 (function squirrel(){
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const SVG_RUN = `<svg viewBox="0 0 140 100" xmlns="http://www.w3.org/2000/svg">
