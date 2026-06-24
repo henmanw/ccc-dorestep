@@ -4936,25 +4936,28 @@ window.addEventListener('hashchange', render);
   #dorestep-squirrel.run.ltr{animation:dsq-run-ltr 6.6s linear forwards}
   #dorestep-squirrel.run.rtl{animation:dsq-run-rtl 6.6s linear forwards}
   #dorestep-squirrel.run .sq-inner{animation:dsq-gallop .4s ease-in-out infinite;transform-origin:50% 90%}
-  #dorestep-squirrel.run #dsq-tail{transform-box:fill-box;transform-origin:72% 90%;animation:dsq-tail .4s ease-in-out infinite}
-  #dorestep-squirrel.run #dsq-frontleg{transform-box:fill-box;transform-origin:50% 8%;animation:dsq-leg-f .4s ease-in-out infinite}
-  #dorestep-squirrel.run #dsq-backleg{transform-box:fill-box;transform-origin:60% 8%;animation:dsq-leg-b .4s ease-in-out infinite}
-  #dorestep-squirrel.peek{width:150px;height:150px}
-  #dorestep-squirrel.peek.left{left:0;right:auto;animation:dsq-peek-left 4.8s ease-in-out forwards}
-  #dorestep-squirrel.peek.right{right:0;left:auto;animation:dsq-peek-right 4.8s ease-in-out forwards}
-  #dorestep-squirrel.peek .sq-inner{animation:dsq-peeklook 2.2s ease-in-out infinite;transform-origin:50% 86%}
+  /* climb a side edge: same running sprite rotated 90deg so it scurries up/down a
+     vertical edge like a tree. Head up when ascending, head down when descending;
+     feet point toward the edge. Movement is on the element, orientation on .sq-inner. */
+  #dorestep-squirrel.climb.up{animation:dsq-climb-up 7s linear forwards}
+  #dorestep-squirrel.climb.down{animation:dsq-climb-down 7s linear forwards}
+  #dorestep-squirrel.climb.left.up .sq-inner{transform:rotate(90deg) scaleX(-1)}
+  #dorestep-squirrel.climb.left.down .sq-inner{transform:rotate(90deg)}
+  #dorestep-squirrel.climb.right.up .sq-inner{transform:rotate(-90deg)}
+  #dorestep-squirrel.climb.right.down .sq-inner{transform:rotate(-90deg) scaleX(-1)}
+  #dorestep-squirrel.climb #dsq-shadow{display:none}
+  #dorestep-squirrel.run #dsq-tail,#dorestep-squirrel.climb #dsq-tail{transform-box:fill-box;transform-origin:72% 90%;animation:dsq-tail .4s ease-in-out infinite}
+  #dorestep-squirrel.run #dsq-frontleg,#dorestep-squirrel.climb #dsq-frontleg{transform-box:fill-box;transform-origin:50% 8%;animation:dsq-leg-f .4s ease-in-out infinite}
+  #dorestep-squirrel.run #dsq-backleg,#dorestep-squirrel.climb #dsq-backleg{transform-box:fill-box;transform-origin:60% 8%;animation:dsq-leg-b .4s ease-in-out infinite}
   @keyframes dsq-run-ltr{from{transform:translateX(-190px)}to{transform:translateX(calc(100vw + 190px))}}
   @keyframes dsq-run-rtl{from{transform:translateX(calc(100vw + 190px))}to{transform:translateX(-190px)}}
-  /* peek: stay mostly BEHIND the edge; only the head + paws poke around it (the body
-     never comes fully on-screen). 42% hidden at rest, with a shy peek-a-boo double-take. */
-  @keyframes dsq-peek-left{0%{transform:translateX(-100%)}15%{transform:translateX(-42%)}27%{transform:translateX(-54%)}40%{transform:translateX(-42%)}82%{transform:translateX(-42%)}100%{transform:translateX(-100%)}}
-  @keyframes dsq-peek-right{0%{transform:translateX(100%)}15%{transform:translateX(42%)}27%{transform:translateX(54%)}40%{transform:translateX(42%)}82%{transform:translateX(42%)}100%{transform:translateX(100%)}}
+  @keyframes dsq-climb-up{from{transform:translateY(calc(100vh + 30px))}to{transform:translateY(-170px)}}
+  @keyframes dsq-climb-down{from{transform:translateY(-170px)}to{transform:translateY(calc(100vh + 30px))}}
   /* bounding gallop: leap up + stretch, land + squash, lean into the run */
   @keyframes dsq-gallop{0%{transform:translateY(0) rotate(-3deg) scaleY(1)}22%{transform:translateY(-16px) rotate(-7deg) scaleY(1.05)}46%{transform:translateY(-2px) rotate(0deg) scaleY(1)}62%{transform:translateY(3px) rotate(4deg) scaleY(.94)}100%{transform:translateY(0) rotate(-3deg) scaleY(1)}}
   @keyframes dsq-tail{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(11deg)}}
   @keyframes dsq-leg-f{0%,100%{transform:rotate(20deg)}50%{transform:rotate(-22deg)}}
-  @keyframes dsq-leg-b{0%,100%{transform:rotate(-20deg)}50%{transform:rotate(22deg)}}
-  @keyframes dsq-peeklook{0%,100%{transform:rotate(0) translateY(0)}35%{transform:rotate(-5deg) translateY(-3px)}65%{transform:rotate(4deg) translateY(2px)}}`;
+  @keyframes dsq-leg-b{0%,100%{transform:rotate(-20deg)}50%{transform:rotate(22deg)}}`;
   const style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
   const el = document.createElement('div'); el.id = 'dorestep-squirrel'; el.setAttribute('aria-hidden', 'true');
   el.innerHTML = '';
