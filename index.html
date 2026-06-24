@@ -4952,8 +4952,7 @@ window.addEventListener('hashchange', render);
   @keyframes dsq-run-rtl{from{transform:translateX(calc(100vw + 190px))}to{transform:translateX(-190px)}}
   @keyframes dsq-climb-up{from{transform:translateY(calc(100vh + 30px))}to{transform:translateY(-170px)}}
   @keyframes dsq-climb-down{from{transform:translateY(-170px)}to{transform:translateY(calc(100vh + 30px))}}
-  /* bounding gallop: leap up + stretch, land + squash, lean into the run */
-  @keyframes dsq-gallop{0%{transform:translateY(0) rotate(-3deg) scaleY(1)}22%{transform:translateY(-16px) rotate(-7deg) scaleY(1.05)}46%{transform:translateY(-2px) rotate(0deg) scaleY(1)}62%{transform:translateY(3px) rotate(4deg) scaleY(.94)}100%{transform:translateY(0) rotate(-3deg) scaleY(1)}}
+  /* no body bounce: the squirrel scurries flat (legs + tail only), the same on the bottom and the side climbs */
   @keyframes dsq-tail{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(11deg)}}
   @keyframes dsq-leg-f{0%,100%{transform:rotate(20deg)}50%{transform:rotate(-22deg)}}
   @keyframes dsq-leg-b{0%,100%{transform:rotate(-20deg)}50%{transform:rotate(22deg)}}`;
