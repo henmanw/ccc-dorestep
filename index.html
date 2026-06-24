@@ -4960,6 +4960,16 @@ window.addEventListener('hashchange', render);
   const el = document.createElement('div'); el.id = 'dorestep-squirrel'; el.setAttribute('aria-hidden', 'true');
   el.innerHTML = '';
   document.body.appendChild(el);
+  /* Hover to spook it: speed up the crossing + the legs + the tail together via the Web
+     Animations playbackRate, so it accelerates smoothly (no restart/jump). Back to normal
+     when the pointer leaves. Works for both the bottom run and the side climbs. */
+  const HOVER_SPEED = 3;
+  function setSpeed(rate){
+    if (!el.getAnimations) return;
+    el.getAnimations({ subtree: true }).forEach(a => { a.playbackRate = rate; });
+  }
+  el.addEventListener('pointerenter', () => setSpeed(HOVER_SPEED));
+  el.addEventListener('pointerleave', () => setSpeed(1));
   const CLASS = {
     'run-ltr':'run ltr', 'run-rtl':'run rtl face-left',
     'climb-left-up':'climb left up', 'climb-left-down':'climb left down',
