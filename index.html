@@ -5018,7 +5018,7 @@ window.addEventListener('hashchange', render);
     el.innerHTML = '<div class="sq-inner">' + (isRun ? SVG_RUN : SVG_PEEK) + '</div>';
     el.className = ''; el.style.cssText = ''; void el.offsetWidth;
     if (isRun){
-      el.style.bottom = '14px';
+      el.style.bottom = '-5px';
     } else {
       el.style.top = (12 + Math.random() * 50).toFixed(1) + '%';   /* random height, both sides */
       el.style.bottom = 'auto';
