@@ -3,26 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dorestep &middot; Brought to you by the College of Connected Computing</title>
-<meta name="description" content="Dorestep is a demo collaboration matcher for Vanderbilt University students: find collaborators, mentors, and projects across every school and discipline. Brought to you by the College of Connected Computing.">
+<title>NextDore &middot; Brought to you by the College of Connected Computing</title>
+<meta name="description" content="NextDore is a demo collaboration matcher for Vanderbilt University students: find collaborators, mentors, and projects across every school and discipline. Brought to you by the College of Connected Computing.">
 <meta name="theme-color" content="#1C1C1C">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="Dorestep">
-<meta property="og:title" content="Dorestep · College of Connected Computing">
+<meta property="og:site_name" content="NextDore">
+<meta property="og:title" content="NextDore · College of Connected Computing">
 <meta property="og:description" content="Find collaborators, mentors, and projects across every Vanderbilt school and discipline. The collaborator your project is missing is probably not in your major.">
-<meta property="og:url" content="https://henmanw.github.io/ccc-dorestep/">
-<meta property="og:image" content="https://henmanw.github.io/ccc-dorestep/og-image.png">
+<meta property="og:url" content="https://henmanw.github.io/ccc-nextdore/">
+<meta property="og:image" content="https://henmanw.github.io/ccc-nextdore/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Dorestep · College of Connected Computing">
+<meta name="twitter:title" content="NextDore · College of Connected Computing">
 <meta name="twitter:description" content="Find collaborators, mentors, and projects across every Vanderbilt school and discipline.">
-<meta name="twitter:image" content="https://henmanw.github.io/ccc-dorestep/og-image.png">
+<meta name="twitter:image" content="https://henmanw.github.io/ccc-nextdore/og-image.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231C1C1C'/%3E%3Cg transform='translate(7,5) scale(0.82)'%3E%3Crect x='10' y='48' width='36' height='3' fill='%23ECB748'/%3E%3Crect x='10' y='51' width='36' height='4' fill='%23B49248'/%3E%3Crect x='13' y='41' width='30' height='3' fill='%23ECB748'/%3E%3Crect x='13' y='44' width='30' height='4' fill='%23B49248'/%3E%3Crect x='16' y='34' width='24' height='3' fill='%23ECB748'/%3E%3Crect x='16' y='37' width='24' height='4' fill='%23B49248'/%3E%3Crect x='20' y='11' width='16' height='23' fill='%231C1C1C'/%3E%3Cpath d='M16 7 H40 V34 H36 V11 H20 V34 H16 Z' fill='%23CFAE70'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Inter:wght@400;500;600;700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   DORESTEP: design tokens
+   NEXTDORE: design tokens
    Brand palette per brand.vanderbilt.edu/color official hexes.
    Fonts per brand.vanderbilt.edu/typography with fallbacks.
    ============================================================ */
@@ -1110,7 +1110,7 @@ body{ transition:background-color .35s ease,color .35s ease; }
 
 <nav id="topnav" aria-label="Primary">
   <div class="shell">
-    <a class="wordmark" href="#/discover" aria-label="Dorestep home">
+    <a class="wordmark" href="#/discover" aria-label="NextDore home">
       <svg viewBox="0 0 64 64" aria-hidden="true">
         <rect x="10" y="48" width="36" height="3" fill="#ECB748"/>
         <rect x="10" y="51" width="36" height="4" fill="#B49248"/>
@@ -1122,7 +1122,7 @@ body{ transition:background-color .35s ease,color .35s ease; }
         <path d="M16 7 H40 V34 H36 V11 H20 V34 H16 Z" fill="#CFAE70"/>
       </svg>
       <span>
-        <span class="wm-text">Dorestep</span>
+        <span class="wm-text">NextDore</span>
         <span class="wm-sub">by the College of Connected Computing</span>
       </span>
     </a>
@@ -1158,7 +1158,7 @@ body{ transition:background-color .35s ease,color .35s ease; }
       <div class="foot-brand">
         <div class="fb-lock">
           <span class="f-v vandy-v" role="img" aria-label="Vanderbilt University"></span>
-          <span class="f-brand">Dorestep</span>
+          <span class="f-brand">NextDore</span>
         </div>
         <p>Where Vanderbilt students find collaborators, mentors, and projects across every school and discipline.</p>
       </div>
@@ -2208,7 +2208,7 @@ function studentConcepts(st){
    SECTION 3: storage, matching engine, router, shared renderers
    ============================================================ */
 /* ---------- storage: seeds are never written; visitor data merges at read ---------- */
-const NS = 'intersect.v1.';
+const NS = 'nextdore.v1.';
 const store = {
   get(k, fallback){
     try{ const v = localStorage.getItem(NS + k); return v === null ? fallback : JSON.parse(v); }
@@ -2597,7 +2597,7 @@ function portfolioText(e){
   const schools = showcaseSchools(e.team).map(s => SCHOOL[s].short);
   const cross = schools.length > 1 ? schools.join(' x ') + ' collaboration' : 'collaboration';
   return [
-    'DORESTEP COLLABORATION',
+    'NEXTDORE COLLABORATION',
     e.title,
     '',
     'Contribution: ' + e.role,
@@ -2605,7 +2605,7 @@ function portfolioText(e){
     'Outcome: ' + e.result,
     (e.skills && e.skills.length ? 'Skills: ' + e.skills.map(s => SKILL_LABEL[s] || s).join(', ') : ''),
     '',
-    'Verified on Dorestep, College of Connected Computing, Vanderbilt University.',
+    'Verified on NextDore, College of Connected Computing, Vanderbilt University.',
   ].filter(Boolean).join('\n');
 }
 function immChip(prj){
@@ -2973,7 +2973,7 @@ function cccLockup(){
 }
 function cccRailCard(){
   return '<div class="aside-card ccc-credit">' + cccLockup()
-    + '<div class="ccc-blurb">Dorestep is how Vanderbilt&rsquo;s newest college puts its founding idea to work: computing belongs in every discipline, and every discipline belongs in computing.</div></div>';
+    + '<div class="ccc-blurb">NextDore is how Vanderbilt&rsquo;s newest college puts its founding idea to work: computing belongs in every discipline, and every discipline belongs in computing.</div></div>';
 }
 
 /* From-your-communities rail card: turns existing memberships into teammates. */
@@ -3039,8 +3039,8 @@ function viewDiscover(){
     hero = '<section class="hero">'
       + '<div class="hero-kicker"><span class="hk-v vandy-v" role="img" aria-label="Vanderbilt University"></span>Brought to you by the College of Connected Computing</div>'
       + '<h1>You&rsquo;re building something. Someone across campus can help.</h1>'
-      + '<p class="lede">Dorestep connects students who are researching and building with students looking to get involved, especially across schools. The collaborator your project is missing is probably not in your major.</p>'
-      + '<div class="hero-story"><span class="hs-dot"></span>This week on Dorestep: a kinetic sculpture found its composer, and a rehab glove met its nurse.</div>'
+      + '<p class="lede">NextDore connects students who are researching and building with students looking to get involved, especially across schools. The collaborator your project is missing is probably not in your major.</p>'
+      + '<div class="hero-story"><span class="hs-dot"></span>This week on NextDore: a kinetic sculpture found its composer, and a rehab glove met its nurse.</div>'
       + '<div class="hero-actions">'
       + '<button class="btn btn-gold" data-action="open-wizard">Create your profile &middot; takes 60 seconds</button>'
       + '<a class="btn btn-ghost" href="#/projects">Browse open projects</a></div>'
@@ -3078,7 +3078,7 @@ function viewDiscover(){
       + '<div class="card-grid">' + meet.map(s => personCard(s)).join('') + '</div>';
     body += '<div class="profile-banner"><div class="pb-txt">'
       + '<div class="pb-t">See your own matches</div>'
-      + '<div class="pb-s">Tell Dorestep what you are building and what you are missing; it will find the people who fit.</div></div>'
+      + '<div class="pb-s">Tell NextDore what you are building and what you are missing; it will find the people who fit.</div></div>'
       + '<button class="btn btn-gold btn-sm" data-action="open-wizard">Create profile</button></div>';
   }
   if (me){
@@ -3088,7 +3088,7 @@ function viewDiscover(){
   const showcase = showcaseEntries();
   if (showcase.length){
     body += sectionLabel('Completed collaborations', null)
-      + '<div style="font-size:13px;color:var(--ink-faint);margin:-6px 0 14px">Proof, not promises. Every vouch on Dorestep comes from work that actually shipped.</div>'
+      + '<div style="font-size:13px;color:var(--ink-faint);margin:-6px 0 14px">Proof, not promises. Every vouch on NextDore comes from work that actually shipped.</div>'
       + '<div class="card-grid">' + showcase.slice(0, 3).map(showcaseCard).join('') + '</div>';
   }
   body += '</div><aside class="rail" style="margin-top:46px">'
@@ -3156,7 +3156,7 @@ function viewPeople(){
   const f = FILTERS.people;
   return '<div class="page shell"><div class="page-head">'
     + '<div class="page-title">People</div>'
-    + '<div class="page-sub">Every student on Dorestep, from every school. Search by what they know, what they are building, or what they are missing.</div></div>'
+    + '<div class="page-sub">Every student on NextDore, from every school. Search by what they know, what they are building, or what they are missing.</div></div>'
     + '<div class="filter-bar">'
     + '<label class="search-box"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>'
     + '<input id="people-q" type="text" placeholder="Search skills, projects, names&hellip;" value="' + esc(f.q) + '" aria-label="Search people"></label>'
@@ -3337,7 +3337,7 @@ function viewOpportunities(){
   if (!me){
     html += '<div class="profile-banner"><div class="pb-txt">'
       + '<div class="pb-t">See opportunities matched to you</div>'
-      + '<div class="pb-s">Tell Dorestep what you are building and what you care about; this feed reorders itself around your fit.</div></div>'
+      + '<div class="pb-s">Tell NextDore what you are building and what you care about; this feed reorders itself around your fit.</div></div>'
       + '<button class="btn btn-gold btn-sm" data-action="open-wizard">Create profile</button></div>';
   }
   html += '<div class="kind-bar" style="margin-top:18px">'
@@ -3523,7 +3523,7 @@ function viewMe(){
   const me = getProfile();
   if (!me){
     return '<div class="page shell"><div class="empty" style="padding-top:90px">'
-      + '<div class="e-title">You are not on Dorestep yet</div>'
+      + '<div class="e-title">You are not on NextDore yet</div>'
       + '<div class="e-sub">Sixty seconds of setup and the matching engine starts working for you: collaborators, projects, and mentors across all of Vanderbilt.</div>'
       + '<button class="btn btn-gold" data-action="open-wizard">Create your profile</button></div></div>';
   }
@@ -3930,7 +3930,7 @@ function renderWizard(){
   let body = '';
   if (s === 0){
     body = '<div class="f-field"><label>Paste your resume or LinkedIn &ldquo;About&rdquo;</label>'
-      + '<textarea id="resume-text" placeholder="Paste a resume, a bio, anything. Dorestep scans it for skills and interests so you do not start from a blank page." style="min-height:120px">' + esc(WIZ.resumeText || '') + '</textarea>'
+      + '<textarea id="resume-text" placeholder="Paste a resume, a bio, anything. NextDore scans it for skills and interests so you do not start from a blank page." style="min-height:120px">' + esc(WIZ.resumeText || '') + '</textarea>'
       + '<div class="f-hint">Stays in your browser. Nothing is uploaded.</div></div>'
       + '<button class="btn btn-ghost btn-sm" data-action="wiz-scan" style="margin-bottom:6px">Scan and fill my profile</button>'
       + (WIZ.scanMsg ? '<div class="safety-note" style="background:var(--gold-tint);border-color:rgba(180,146,72,.4)">' + WIZ.scanMsg + '</div>' : '')
@@ -3938,7 +3938,7 @@ function renderWizard(){
       + COMMUNITIES.slice(0, 6).map(c =>
         '<button type="button" class="comm-pick' + (d.communities.includes(c.id) ? ' on' : '') + '" data-action="wiz-comm" data-id="' + c.id + '">'
         + '<span class="cp-check">' + (d.communities.includes(c.id) ? '&#10003;' : '') + '</span>'
-        + '<span><span class="cp-name">' + esc(c.name) + '</span><br><span class="cp-meta">' + c.type + ' &middot; ' + c.members.length + ' on Dorestep</span></span></button>').join('')
+        + '<span><span class="cp-name">' + esc(c.name) + '</span><br><span class="cp-meta">' + c.type + ' &middot; ' + c.members.length + ' on NextDore</span></span></button>').join('')
       + '<div class="f-hint">Pick any that fit. You will get suggested teammates from them right away.</div></div>';
   } else if (s === 1){
     body = '<div class="f-row">'
@@ -4024,7 +4024,7 @@ function suggestNote(target, projectId, callId, session){
   if (projectId){
     const prj = projectById(projectId);
     const role = prj.rolesNeeded.find(r => !r.filled);
-    return 'Hi ' + first + ', I saw ' + prj.title + ' on Dorestep. '
+    return 'Hi ' + first + ', I saw ' + prj.title + ' on NextDore. '
       + (role ? 'The open ' + role.role + ' role looks like a fit for what I do, and I would love to help.' : 'I would love to get involved.');
   }
   if (me){
@@ -4035,7 +4035,7 @@ function suggestNote(target, projectId, callId, session){
         + ', which seems to be exactly your thing. Could we talk this week?';
     }
   }
-  return 'Hi ' + first + ', I found your profile on Dorestep and think we might build something good together. Open to a quick chat?';
+  return 'Hi ' + first + ', I found your profile on NextDore and think we might build something good together. Open to a quick chat?';
 }
 function openConnectModal(targetId, projectId, callId, session){
   const target = studentById(targetId);
@@ -4190,18 +4190,18 @@ function gcalLink(slot, withName){
   const { start, end } = slotToDates(slot);
   const p = new URLSearchParams({
     action:'TEMPLATE',
-    text:'Dorestep collaboration with ' + withName,
+    text:'NextDore collaboration with ' + withName,
     dates: start + '/' + end,
-    details:'Meeting set up through Dorestep, the Vanderbilt collaboration matcher.',
+    details:'Meeting set up through NextDore, the Vanderbilt collaboration matcher.',
   });
   return 'https://calendar.google.com/calendar/render?' + p.toString();
 }
 function icsFor(slot, withName){
   const { start, end } = slotToDates(slot);
-  return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Dorestep//EN','BEGIN:VEVENT',
-    'SUMMARY:Dorestep collaboration with ' + withName,
+  return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//NextDore//EN','BEGIN:VEVENT',
+    'SUMMARY:NextDore collaboration with ' + withName,
     'DTSTART:' + start, 'DTEND:' + end,
-    'DESCRIPTION:Meeting set up through Dorestep at Vanderbilt.',
+    'DESCRIPTION:Meeting set up through NextDore at Vanderbilt.',
     'END:VEVENT','END:VCALENDAR'].join('\r\n');
 }
 
@@ -4221,18 +4221,18 @@ function gcalEventLink(opp){
     action:'TEMPLATE',
     text: opp.title,
     dates: start + '/' + end,
-    details: (opp.org ? opp.org + '. ' : '') + 'Saved from Dorestep, the Vanderbilt opportunities feed (demo).',
+    details: (opp.org ? opp.org + '. ' : '') + 'Saved from NextDore, the Vanderbilt opportunities feed (demo).',
     location: opp.location || '',
   });
   return 'https://calendar.google.com/calendar/render?' + p.toString();
 }
 function icsForEvent(opp){
   const { start, end } = eventRange(opp);
-  return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Dorestep//EN','BEGIN:VEVENT',
+  return ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//NextDore//EN','BEGIN:VEVENT',
     'SUMMARY:' + icsEsc(opp.title),
     'DTSTART:' + start, 'DTEND:' + end,
     'LOCATION:' + icsEsc(opp.location),
-    'DESCRIPTION:' + icsEsc((opp.org ? opp.org + '. ' : '') + 'Saved from Dorestep at Vanderbilt (demo).'),
+    'DESCRIPTION:' + icsEsc((opp.org ? opp.org + '. ' : '') + 'Saved from NextDore at Vanderbilt (demo).'),
     'END:VEVENT','END:VCALENDAR'].join('\r\n');
 }
 
@@ -4309,10 +4309,10 @@ function openCompareModal(prjId, roleIdx){
     '<div class="modal-scrim" data-action="modal-close"></div>'
     + '<div class="modal-card" style="width:760px"><div class="modal-head">'
     + '<div class="modal-title">Who fits the ' + esc(role.role) + ' role?</div>'
-    + '<div class="modal-sub">Top candidates on Dorestep, ranked by skill coverage, vouches, and schedule overlap with the owner.</div></div>'
+    + '<div class="modal-sub">Top candidates on NextDore, ranked by skill coverage, vouches, and schedule overlap with the owner.</div></div>'
     + '<div class="modal-body">'
     + (ranked.length ? '<div class="cmp">' + cols + '</div>'
-      : '<div class="pal-empty">No one on Dorestep currently offers these skills. The full app would search all of campus.</div>')
+      : '<div class="pal-empty">No one on NextDore currently offers these skills. The full app would search all of campus.</div>')
     + '</div>'
     + '<div class="modal-foot"><span></span><button class="btn btn-ghost" data-action="modal-close">Close</button></div></div>';
   document.getElementById('modal-root').classList.add('open');
@@ -4445,8 +4445,8 @@ function acceptConnection(connId){
       if (!me2 || (me2.vouches || []).length) return;
       const skill = me2.offering[0];
       me2.vouches = [{
-        from: c.toId, skill, project:'your first Dorestep collaboration',
-        text:'Exactly the collaborator I hoped Dorestep would find.',
+        from: c.toId, skill, project:'your first NextDore collaboration',
+        text:'Exactly the collaborator I hoped NextDore would find.',
       }];
       setProfile(me2);
       if (other) pushNotif('<b>' + esc(other.name) + '</b> vouched for your ' + esc(lcLabel(SKILL_LABEL[skill] || skill)), '#/me');
@@ -4735,7 +4735,7 @@ ACTIONS['prj-advance'] = (el) => {
   p.status = to;
   if (to === 'completed'){
     p.completedOn = new Date().toISOString().slice(0, 10);
-    p.result = p.result || 'Wrapped up and shipped through Dorestep.';
+    p.result = p.result || 'Wrapped up and shipped through NextDore.';
     /* Reputation tied to outcomes: completing a real collaboration earns a vouch. */
     const me = getProfile();
     if (me && (me.offering || []).length){
@@ -4764,7 +4764,7 @@ ACTIONS['portfolio'] = (el) => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'dorestep-' + id + '.txt';
+    a.download = 'nextdore-' + id + '.txt';
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     toast('<span class="t-gold">&#10003;</span> Portfolio entry downloaded.');
@@ -4780,7 +4780,7 @@ ACTIONS['ics'] = (el) => {
     const blob = new Blob([icsFor(el.dataset.slot, el.dataset.with)], { type:'text/calendar' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = 'dorestep-meeting.ics';
+    a.href = url; a.download = 'nextdore-meeting.ics';
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     toast('<span class="t-gold">&#10003;</span> Calendar invite downloaded.');
@@ -4805,7 +4805,7 @@ ACTIONS['opp-ics'] = (el) => {
     const blob = new Blob([icsForEvent(o)], { type:'text/calendar' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = 'dorestep-' + o.id + '.ics';
+    a.href = url; a.download = 'nextdore-' + o.id + '.ics';
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     toast('<span class="t-gold">&#10003;</span> Event saved to your calendar file.');
@@ -4929,25 +4929,25 @@ window.addEventListener('hashchange', render);
   /* (the side "peek" pose was removed June 2026 — the squirrel only runs along the
      bottom or climbs the side edges now, both using the SVG_RUN sprite) */
   const css = `
-  #dorestep-squirrel{position:fixed;left:0;bottom:-5px;width:152px;height:110px;z-index:45;pointer-events:auto;display:none;will-change:transform}
-  #dorestep-squirrel svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 7px rgba(0,0,0,.16))}
-  #dorestep-squirrel .sq-inner{width:100%;height:100%}
-  #dorestep-squirrel.face-left svg{transform:scaleX(-1)}
-  #dorestep-squirrel.run.ltr{animation:dsq-run-ltr 6.6s linear forwards}
-  #dorestep-squirrel.run.rtl{animation:dsq-run-rtl 6.6s linear forwards}
+  #nextdore-squirrel{position:fixed;left:0;bottom:-5px;width:152px;height:110px;z-index:45;pointer-events:auto;display:none;will-change:transform}
+  #nextdore-squirrel svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 5px 7px rgba(0,0,0,.16))}
+  #nextdore-squirrel .sq-inner{width:100%;height:100%}
+  #nextdore-squirrel.face-left svg{transform:scaleX(-1)}
+  #nextdore-squirrel.run.ltr{animation:dsq-run-ltr 6.6s linear forwards}
+  #nextdore-squirrel.run.rtl{animation:dsq-run-rtl 6.6s linear forwards}
   /* climb a side edge: same running sprite rotated 90deg so it scurries up/down a
      vertical edge like a tree. Head up when ascending, head down when descending;
      feet point toward the edge. Movement is on the element, orientation on .sq-inner. */
-  #dorestep-squirrel.climb.up{animation:dsq-climb-up 7s linear forwards}
-  #dorestep-squirrel.climb.down{animation:dsq-climb-down 7s linear forwards}
-  #dorestep-squirrel.climb.left.up .sq-inner{transform:rotate(90deg) scaleX(-1)}
-  #dorestep-squirrel.climb.left.down .sq-inner{transform:rotate(90deg)}
-  #dorestep-squirrel.climb.right.up .sq-inner{transform:rotate(-90deg)}
-  #dorestep-squirrel.climb.right.down .sq-inner{transform:rotate(-90deg) scaleX(-1)}
-  #dorestep-squirrel.climb #dsq-shadow{display:none}
-  #dorestep-squirrel.run #dsq-tail,#dorestep-squirrel.climb #dsq-tail{transform-box:fill-box;transform-origin:72% 90%;animation:dsq-tail .4s ease-in-out infinite}
-  #dorestep-squirrel.run #dsq-frontleg,#dorestep-squirrel.climb #dsq-frontleg{transform-box:fill-box;transform-origin:50% 8%;animation:dsq-leg-f .4s ease-in-out infinite}
-  #dorestep-squirrel.run #dsq-backleg,#dorestep-squirrel.climb #dsq-backleg{transform-box:fill-box;transform-origin:60% 8%;animation:dsq-leg-b .4s ease-in-out infinite}
+  #nextdore-squirrel.climb.up{animation:dsq-climb-up 7s linear forwards}
+  #nextdore-squirrel.climb.down{animation:dsq-climb-down 7s linear forwards}
+  #nextdore-squirrel.climb.left.up .sq-inner{transform:rotate(90deg) scaleX(-1)}
+  #nextdore-squirrel.climb.left.down .sq-inner{transform:rotate(90deg)}
+  #nextdore-squirrel.climb.right.up .sq-inner{transform:rotate(-90deg)}
+  #nextdore-squirrel.climb.right.down .sq-inner{transform:rotate(-90deg) scaleX(-1)}
+  #nextdore-squirrel.climb #dsq-shadow{display:none}
+  #nextdore-squirrel.run #dsq-tail,#nextdore-squirrel.climb #dsq-tail{transform-box:fill-box;transform-origin:72% 90%;animation:dsq-tail .4s ease-in-out infinite}
+  #nextdore-squirrel.run #dsq-frontleg,#nextdore-squirrel.climb #dsq-frontleg{transform-box:fill-box;transform-origin:50% 8%;animation:dsq-leg-f .4s ease-in-out infinite}
+  #nextdore-squirrel.run #dsq-backleg,#nextdore-squirrel.climb #dsq-backleg{transform-box:fill-box;transform-origin:60% 8%;animation:dsq-leg-b .4s ease-in-out infinite}
   @keyframes dsq-run-ltr{from{transform:translateX(-190px)}to{transform:translateX(calc(100vw + 190px))}}
   @keyframes dsq-run-rtl{from{transform:translateX(calc(100vw + 190px))}to{transform:translateX(-190px)}}
   @keyframes dsq-climb-up{from{transform:translateY(calc(100vh + 30px))}to{transform:translateY(-170px)}}
@@ -4957,7 +4957,7 @@ window.addEventListener('hashchange', render);
   @keyframes dsq-leg-f{0%,100%{transform:rotate(20deg)}50%{transform:rotate(-22deg)}}
   @keyframes dsq-leg-b{0%,100%{transform:rotate(-20deg)}50%{transform:rotate(22deg)}}`;
   const style = document.createElement('style'); style.textContent = css; document.head.appendChild(style);
-  const el = document.createElement('div'); el.id = 'dorestep-squirrel'; el.setAttribute('aria-hidden', 'true');
+  const el = document.createElement('div'); el.id = 'nextdore-squirrel'; el.setAttribute('aria-hidden', 'true');
   el.innerHTML = '';
   document.body.appendChild(el);
   /* Hover to spook it: speed up the crossing + the legs + the tail together via the Web

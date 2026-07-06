@@ -1,6 +1,6 @@
-# Dorestep
+# NextDore
 
-**Where Vanderbilt disciplines meet.** Dorestep connects students who are researching, building, or founding something with students looking to get involved, especially across schools. The collaborator your project is missing is probably not in your major.
+**Where Vanderbilt disciplines meet.** NextDore connects students who are researching, building, or founding something with students looking to get involved, especially across schools. The collaborator your project is missing is probably not in your major.
 
 Brought to you by the College of Connected Computing at Vanderbilt University.
 
@@ -31,16 +31,16 @@ python3 -m http.server 8000
 
 This folder is already a git repository with an initial commit. To publish:
 
-1. Create a new **public** repository on GitHub, for example `dorestep` (do not add a README, license, or .gitignore from the GitHub side, this folder already has them).
+1. Create a new **public** repository on GitHub, for example `nextdore` (do not add a README, license, or .gitignore from the GitHub side, this folder already has them).
 2. From inside this folder, point it at your new repo and push:
    ```bash
-   git remote add origin https://github.com/YOUR-USERNAME/dorestep.git
+   git remote add origin https://github.com/YOUR-USERNAME/nextdore.git
    git push -u origin main
    ```
 3. On GitHub, go to **Settings > Pages**. Under **Build and deployment**, set **Source** to "Deploy from a branch," choose branch **main** and folder **/ (root)**, then **Save**.
 4. Wait about a minute. Your demo will be live at:
    ```
-   https://YOUR-USERNAME.github.io/dorestep/
+   https://YOUR-USERNAME.github.io/nextdore/
    ```
 
 The `.nojekyll` file tells GitHub Pages to serve the files as-is without Jekyll processing.
@@ -54,11 +54,11 @@ Append these to the URL to jump into a populated state (useful for showing the d
 - `#/discover?onboard=1` opens the onboarding wizard.
 - `#/projects?seedme&post=1` opens the "Post a project" flow.
 
-Example: `https://YOUR-USERNAME.github.io/dorestep/#/discover?seedme`
+Example: `https://YOUR-USERNAME.github.io/nextdore/#/discover?seedme`
 
 ## Beyond the demo
 
-This prototype is the front end. A real, multi-user Dorestep would need a backend that GitHub Pages cannot host on its own (Pages serves static files only). A realistic path:
+This prototype is the front end. A real, multi-user NextDore would need a backend that GitHub Pages cannot host on its own (Pages serves static files only). A realistic path:
 
 - **Data and auth:** a service such as Supabase or Firebase, with sign-in restricted to `@vanderbilt.edu` (Vanderbilt runs Google Workspace), and real SSO via VUIT later.
 - **Hosting:** keep this static front end on Pages and talk to that backend, or move to a full-stack host (Vercel, Netlify, Render).
